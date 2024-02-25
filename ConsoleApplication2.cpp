@@ -1,26 +1,45 @@
 
 #include <iostream>
-
-int N = 20;
-
-void FindOddOrEvenNumbers(int limit)
-{
-    std::cout << '\n';
-    std::cout << "Enter: \"1\" - odd numbers, \"0\" - even numbers" << '\n';
-    int IsOdd;
-    std::cin >> IsOdd;
-    for (int count = IsOdd; count < limit; count+=2)
-       std::cout << count << " ";
-    std::cout << '\n';
-}
+#include <time.h>
 
 
 int main()
 { 
-    for (int count = 0; count < N; count += 2)
-        std::cout << count << " ";
+    using namespace std;
 
-    FindOddOrEvenNumbers(33);
+    struct tm buf;
+    time_t t = time(NULL);
+    localtime_s(&buf, &t);
+
+    int day = buf.tm_mday;
+    const int N = 10;
+    int sum = 0;
+   
+    // создание и наполнение массива
+    int array[N][N];
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            array[i][j] = i + j;   
+        }
+    }
+
+
+    //вывод массива в консоль и подсчет суммы строки по заданному условию
+    for (int i = 0; i < N; i++)
+    {
+      for(int j=0; j < N; j++)
+      {
+          cout << array[i][j] << " ";   
+      }
+      cout << '\n';
+      sum += array[day % N][i];
+    }
+    cout << "The index of the row for calculating the sum of the elements - " << day % N << "\n" << "The sum of the row = " << " " << sum;
+
+    
+        
 
     
 
