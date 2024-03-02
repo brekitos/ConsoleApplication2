@@ -1,47 +1,34 @@
-
 #include <iostream>
-#include <time.h>
+using namespace std;
+
+class Vector
+{
+private:
+	double x = 1;
+	double y = 2;
+	double z = 3;
+public:
+	Vector()
+	{}
+	Vector(double _x, double _y, double _z) : x(_x), y(_y), z(_z)
+	{}
+	void Show()
+	{
+		cout << "Vector value: \n" << "x = " << x << '\n' << "y = " << y << '\n' << "z = " << z << '\n';
+	}
+	double Module()
+	{
+		double mod = sqrt(x * x + y * y + z * z);
+		return mod;
+	}
+
+};
 
 
 int main()
-{ 
-    using namespace std;
+{
+	Vector v(6,43,2);
+	v.Show();
+	cout << "Vector module = " << v.Module();
 
-    struct tm buf;
-    time_t t = time(NULL);
-    localtime_s(&buf, &t);
-
-    int day = buf.tm_mday;
-    const int N = 10;
-    int sum = 0;
-   
-    // создание и наполнение массива
-    int array[N][N];
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < N; j++)
-        {
-            array[i][j] = i + j;   
-        }
-    }
-
-
-    //вывод массива в консоль и подсчет суммы строки по заданному условию
-    for (int i = 0; i < N; i++)
-    {
-      for(int j=0; j < N; j++)
-      {
-          cout << array[i][j] << " ";   
-      }
-      cout << '\n';
-      sum += array[day % N][i];
-    }
-    cout << "The index of the row for calculating the sum of the elements - " << day % N << "\n" << "The sum of the row = " << " " << sum;
-
-    
-        
-
-    
-
-   
 }
