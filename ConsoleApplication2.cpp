@@ -1,34 +1,57 @@
 #include <iostream>
 using namespace std;
 
-class Vector
+class Player
 {
 private:
-	double x = 1;
-	double y = 2;
-	double z = 3;
+	int score;
+	string name;
 public:
-	Vector()
-	{}
-	Vector(double _x, double _y, double _z) : x(_x), y(_y), z(_z)
-	{}
+	
+	void Enter(int i)
+	{
+		cout << "Enter name of Player" << i+1 << ": ";
+		cin >> name;
+		cout << "Enter score of Player" << i + 1 << ": ";
+		cin >> score;
+	}
+	void bubblesort(Player arr[], int x)
+	{
+		for (int i = 0; i < x - 1; i++) {
+			for (int j = 0; j < x - i - 1; j++) {
+				if (arr[j].score < arr[j + 1].score) 
+				{
+					swap(arr[j], arr[j + 1]);
+				}
+			}
+		}
+	}
 	void Show()
 	{
-		cout << "Vector value: \n" << "x = " << x << '\n' << "y = " << y << '\n' << "z = " << z << '\n';
+	
+		cout << name << '\t' << score << endl;
 	}
-	double Module()
-	{
-		double mod = sqrt(x * x + y * y + z * z);
-		return mod;
-	}
-
 };
-
 
 int main()
 {
-	Vector v(6,43,2);
-	v.Show();
-	cout << "Vector module = " << v.Module();
-
+	int x;
+	cout << "Enter the number of players: ";
+	cin >> x;
+	Player* arr = new Player[x];
+	for (int i = 0; i < x; i++)
+	{
+		arr[i].Enter(i);
+	}
+	cout << '\n' << "Name\t" << "Score" << endl;
+	for (int i = 0; i < x; i++)
+	{
+		arr[i].bubblesort(arr,x);
+	}
+	for (int i = 0; i < x; i++)
+	{
+		arr[i].Show();
+		
+	}
+	delete[] arr;
 }
