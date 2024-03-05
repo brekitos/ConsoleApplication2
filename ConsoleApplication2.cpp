@@ -1,57 +1,48 @@
 #include <iostream>
 using namespace std;
 
-class Player
+class Animal
 {
-private:
-	int score;
-	string name;
 public:
-	
-	void Enter(int i)
+	virtual void Voice()
 	{
-		cout << "Enter name of Player" << i+1 << ": ";
-		cin >> name;
-		cout << "Enter score of Player" << i + 1 << ": ";
-		cin >> score;
+		cout << "*Animal noise*";
 	}
-	void bubblesort(Player arr[], int x)
+};
+class Dog : public Animal
+{
+public:
+	void Voice() override
 	{
-		for (int i = 0; i < x - 1; i++) {
-			for (int j = 0; j < x - i - 1; j++) {
-				if (arr[j].score < arr[j + 1].score) 
-				{
-					swap(arr[j], arr[j + 1]);
-				}
-			}
-		}
+		cout << "*Woof! Woof!* ";
 	}
-	void Show()
+};
+class Cat : public Animal
+{
+public:
+	void Voice() override
 	{
-	
-		cout << name << '\t' << score << endl;
+		cout << "*Meow! Meow!* ";
+	}
+};
+class Cow : public Animal
+{
+public:
+	void Voice() override
+	{
+		cout << "*Moo! Moo!* ";
 	}
 };
 
+
 int main()
 {
-	int x;
-	cout << "Enter the number of players: ";
-	cin >> x;
-	Player* arr = new Player[x];
-	for (int i = 0; i < x; i++)
+	
+	
+	Animal* arr[3] = {new Dog,new Cat,new Cow};
+	for (Animal* i : arr)
 	{
-		arr[i].Enter(i);
+		i->Voice();
 	}
-	cout << '\n' << "Name\t" << "Score" << endl;
-	for (int i = 0; i < x; i++)
-	{
-		arr[i].bubblesort(arr,x);
-	}
-	for (int i = 0; i < x; i++)
-	{
-		arr[i].Show();
-		
-	}
-	delete[] arr;
+	
 }
